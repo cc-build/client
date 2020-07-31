@@ -1,5 +1,6 @@
 control "Validate source package" do
-  only_if ENV['HAB_TEST'].nil?
+  only_if { ENV['HAB_TEST'].nil? }
+
   describe command 'bash -c "cd source/*/cinc/ && sha256sum -c cinc-[0-9]*.tar.xz.sha256sum"' do
     its('exit_status') { should eq 0 }
     its('stdout') { should match /OK$/ }
