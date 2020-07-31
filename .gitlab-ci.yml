@@ -322,7 +322,7 @@ test:bio:linux:
     - mkdir /opt/cinc/embedded
     - ln -s /opt/cinc/bin /opt/cinc/embedded/bin
     - ln -s $(bio pkg path core/ruby27)/bin/ruby /opt/cinc/embedded/bin/ruby
-    - cinc-auditor exec test/integration
+    - cinc-auditor exec test/integration/default_spec.rb
   variables:
     APPBUNDLER_ALLOW_RVM: "true"
     HAB_TEST: "true"
