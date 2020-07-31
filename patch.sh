@@ -48,12 +48,9 @@ cd $TOP_DIR
 echo "Copying Cinc resources..."
 cp -rp cinc/* chef/
 
-echo "Loading omnibus-toolchain for bundler"
-source /home/omnibus/load-omnibus-toolchain.sh
 echo "Updating Gemfile.lock"
 cd chef
 bundle lock
 echo "Commit the new Gemfile.lock"
 git add Gemfile.lock
 git commit -m 'Update Gemfile.lock to handle cinc-auditor'
-cd ..
