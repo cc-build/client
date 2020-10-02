@@ -40,8 +40,8 @@ control 'cinc-*nix' do
 
   describe command 'chef-client --version' do
     its('exit_status') { should eq 0 }
-    its('stdout') { should match /^Redirecting to cinc-client/ }
-    its('stderr') { should match /^Cinc Client:/ }
+    its('stderr') { should match /^Redirecting to cinc-client/ }
+    its('stdout') { should match /^Cinc Client:/ }
   end
 
   describe command 'chef-solo -l info -o ""' do
