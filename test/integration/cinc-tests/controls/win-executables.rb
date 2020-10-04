@@ -32,8 +32,29 @@ control 'cinc-windows' do
     its('exit_status') { should eq 0 }
   end
 
+  describe command 'chef-client --version' do
+    its('exit_status') { should eq 0 }
+    its('stderr') { should match /^Redirecting to cinc-client/ }
+    its('stdout') { should match /^Cinc Client:/ }
+  end
+
+  describe command 'chef-solo -l info -o ""' do
+    its('exit_status') { should eq 0 }
+    its('stdout') { should match /^Redirecting to cinc-solo/ }
+    its('stdout') { should match /Cinc Zero/ }
+    its('stdout') { should match /Cinc Client/ }
+    its('stdout') { should match /Cinc-client/ }
+    its('stdout') { should_not match /Chef Infra Zero/ }
+    its('stdout') { should_not match /Chef Infra Client/ }
+    its('stdout') { should_not match /Chef-client/ }
+    its('stdout') { should match %r{C:/cinc/client.rb.} }
+    its('stdout') { should match %r{C:/cinc} }
+    its('stdout') { should_not match %r{C:/chef/client.rb} }
+    its('stdout') { should_not match %r{C:/chef} 
+  end
+
   describe command 'C:\cinc-project\cinc\bin\inspec version' do
     its('exit_status') { should eq 0 }
-    its('stderr') { should match /^Redirecting to cinc-auditor/ }
+    its('stdout') { should match /^Redirecting to cinc-auditor/ }
   end
 end
