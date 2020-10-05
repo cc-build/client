@@ -50,7 +50,7 @@ control 'cinc-windows' do
     its('stdout') { should match %r{C:/cinc/client.rb.} }
     its('stdout') { should match %r{C:/cinc} }
     its('stdout') { should_not match %r{C:/chef/client.rb} }
-    its('stdout') { should_not match %r{C:/chef} 
+    its('stdout') { should_not match %r{C:/chef} }
   end
 
   describe command 'C:\cinc-project\cinc\bin\inspec version' do
